@@ -22,6 +22,42 @@ object Main {
    */
 
   def challengeFunction(inputString: String): Boolean = {
-    true
+    val brokenDownInputStringWithIndex: Seq[(Char, Int)] = inputString.toCharArray.toSeq.zipWithIndex
+
+    val brokenDownInputStringWithIndexWithoutLast = brokenDownInputStringWithIndex.dropRight(1)
+
+    val onlyDuplicatedCharactersInBrokenDownInputStringWithIndexSeqSeq: Seq[Seq[Char]] =
+      brokenDownInputStringWithIndexWithoutLast.map {
+        case (thisValue, index) =>
+          val nextValue = brokenDownInputStringWithIndex.apply(index + 1)._1
+          if (thisValue == nextValue) {
+            Seq(thisValue)
+          } else {
+            Seq.empty
+          }
+      }
+
+    val onlyDuplicatedCharactersInBrokenDownInputStringWithIndex: Seq[(Char, Int)] =
+      onlyDuplicatedCharactersInBrokenDownInputStringWithIndexSeqSeq.flatten.zipWithIndex
+
+    val inputStringWithoutDuplicatesReduceDoublesToSinglesSeqSeq: Seq[Seq[Char]] =
+      onlyDuplicatedCharactersInBrokenDownInputStringWithIndex.map {
+        case (thisValue, index) =>
+          val listBefore: Seq[Char] = onlyDuplicatedCharactersInBrokenDownInputStringWithIndex.take(index).map(_._1)
+          val howManyBeforeThisChar = listBefore.filter(_ == thisValue)
+          if (howManyBeforeThisChar.length > 0) {
+            Seq.empty
+          } else {
+            Seq(thisValue)
+          }
+      }
+
+    val inputStringWithoutDuplicatesReduceDoublesToSingles =
+      inputStringWithoutDuplicatesReduceDoublesToSinglesSeqSeq.flatten
+
+    val inputStringWithoutDuplicatesReduceDoublesToSinglesSortedReverse =
+      inputStringWithoutDuplicatesReduceDoublesToSingles.sorted.reverse
+
+    inputStringWithoutDuplicatesReduceDoublesToSingles == inputStringWithoutDuplicatesReduceDoublesToSinglesSortedReverse
   }
 }
