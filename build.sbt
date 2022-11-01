@@ -1,7 +1,7 @@
 lazy val root = Project("root", file("."))
   .settings(commonSettings)
   .settings(
-    name := "Scala Starter",
+    name := "Scala Golf",
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-core" % "2.8.0",
       "org.scalameta" %% "munit" % "0.7.29" % Test,
