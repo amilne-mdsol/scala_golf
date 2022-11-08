@@ -64,4 +64,16 @@ class ExampleSpec extends FunSuite {
       ),
     )
   }
+
+  test("challenge test 11") {
+    assert(
+      mainFunction
+        .challengeFunction(Seq(0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0)) == Seq(
+        (1, 2, 2),
+        (2, 2, 2),
+        (2, 2, 2),
+        (2, 2, 1),
+      ),
+    )
+  }
 }
