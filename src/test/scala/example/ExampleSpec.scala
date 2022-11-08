@@ -17,4 +17,34 @@ class ExampleSpec extends FunSuite {
   test("challenge test 3") {
     assert(mainFunction.challengeFunction(Seq(0, 0, 0, 0, 5, 0, 0, 0, 0)) == Seq((0, 5, 0)))
   }
+
+  test("challenge test 4") {
+    assert(mainFunction.challengeFunction(Seq(90, 90, 90, 90, 5, 90, 90, 90, 90)) == Seq())
+  }
+
+  test("challenge test 5") {
+    assert(mainFunction.challengeFunction(Seq(10, 10, 10, 10, 20, 20, 10, 10, 10)) == Seq((10, 20, 20), (20, 20, 10)))
+  }
+
+  test("challenge test 6") {
+    assert(
+      mainFunction
+        .challengeFunction(Seq(10, 10, 10, 10, 20, 20, 20, 10, 10)) == Seq((10, 20, 20), (20, 20, 20), (20, 20, 10)),
+    )
+  }
+
+  test("challenge test 7") {
+    assert(mainFunction.challengeFunction(Seq(10, 10, 10, 10, 20, 20, 30, 10, 10)) == Seq((20, 30, 10)))
+  }
+
+  test("challenge test 8") {
+    assert(mainFunction.challengeFunction(Seq(10, 10, 10, 10, 20, 21, 20, 10, 10)) == Seq((20, 21, 20)))
+  }
+
+  test("challenge test 9") {
+    assert(
+      mainFunction
+        .challengeFunction(Seq(10, 20, 20, 0, 30, 31, 30, 30, 10)) == Seq((10, 20, 20), (20, 20, 0), (30, 31, 30)),
+    )
+  }
 }
