@@ -21,7 +21,7 @@ object Main {
   Output: (0,5,0)
    */
 
-  def challengeFunction(inputSeq: Seq[Int]): Seq[(Int, Int, Int)] = {
+  def challengeFunction(i: Seq[Int]): Seq[(Int, Int, Int)] = {
     Seq((0, 0, 0))
   }
 }
