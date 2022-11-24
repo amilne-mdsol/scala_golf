@@ -75,4 +75,18 @@ class ExampleSpec extends FunSuite {
       "One billion, fifty nine million, seventy thousand, nine hundred and eighty nine",
     )
   }
+
+  test("challenge test 14") {
+    assertEquals(
+      mainFunction.challengeFunction(100),
+      "One hundred",
+    )
+  }
+
+  test("challenge test 15") {
+    assertEquals(
+      mainFunction.challengeFunction(500),
+      "Five hundred",
+    )
+  }
 }
