@@ -36,15 +36,26 @@ class ExampleSpec extends FunSuite {
 
   test("challenge test 8") {
     assertEquals(
-      mainFunction.challengeFunction(2, "aeiouaeiouaeiouaeiouaeiouaeiouaeiou"),
-      "aaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouu",
+      mainFunction.challengeFunction(2, "AeiouaeiouaeiouaeiouaeiouaeIouaeiou"),
+      "AAeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeIIoouuaaeeiioouu",
     )
   }
 
   test("challenge test 9") {
     assertEquals(
+      mainFunction.challengeFunction(2, "aeiouaeiouaeiouaeiouaeiouaeiouaeiou"),
+      "aaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouuaaeeiioouu",
+    )
+  }
+
+  test("challenge test 10") {
+    assertEquals(
       mainFunction.challengeFunction(33, "aeiouaeiouaeiouaeiouaeiouaeiouaeiou"),
       "aaaeeeiiiooouuuaaaeeeiiiooouuuaaaeeeiiiooouuuaaaeeeiiiooouuuaaaeeeiiiooouuuaaaeeeiiiooouuuaaaeeeiiiooouuu",
     )
+  }
+
+  test("challenge test 11") {
+    assertEquals(mainFunction.challengeFunction(33, "LLLlleEeroy - !JEnkInsy"), "LLLlleeeroooy - !JEEEnkIIInsy")
   }
 }
