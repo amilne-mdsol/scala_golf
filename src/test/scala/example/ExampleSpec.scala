@@ -56,6 +56,9 @@ class ExampleSpec extends FunSuite {
   }
 
   test("challenge test 11") {
-    assertEquals(mainFunction.challengeFunction(33, "LLLlleEeroy - !JEnkInsy"), "LLLlleeeroooy - !JEEEnkIIInsy")
+    assertEquals(
+      mainFunction.challengeFunction(33, "LLLlleEerrrrrroy - !JjJjEnkkInsy"),
+      "LLLlleeerrrrrroooy - !JjJjEEEnkkIIInsy",
+    )
   }
 }
