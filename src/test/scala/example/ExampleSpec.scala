@@ -122,12 +122,94 @@ class ExampleSpec extends FunSuite {
   test("challenge test 10") {
     assertEquals(
       mainFunction.challengeFunction(
+        """a
+          |b     b                                         b
+          |c           c                                   c
+          |d                 d                             d
+          |e                       e                       e
+          |f                             f                 f
+          |g                                   g           g
+          |h                                         h     h
+          |                                                i""".stripMargin,
+        "abcdefghi",
+      ),
+      48.7,
+    )
+  }
+
+  test("challenge test 11") {
+    assertEquals(
+      mainFunction.challengeFunction(
+        """             a                                  b
+          |          b                                     c
+          |                 c                              d
+          |        d                                       e
+          |                  e                             f
+          |        f                                       g
+          |        h         g                             h
+          |          j     i                               i
+          |              k                                 j""".stripMargin,
+        "abcdefghijk",
+      ),
+      77.0,
+    )
+  }
+
+  test("performance test 1") {
+    assertEquals(
+      mainFunction.challengeFunction(
+        """ab               bz""".stripMargin,
+        "babzbabzbabzbabzbabzbabzb",
+      ),
+      200.0,
+    )
+  }
+
+  test("performance test 2") {
+    assertEquals(
+      mainFunction.challengeFunction(
+        """ab               bz""".stripMargin,
+        "baaabbzzzbbbaaabbzzzbbaaabbzzzbbaaabbzzzbbaaabbzzzbbaaabbzzzbb",
+      ),
+      200.0,
+    )
+  }
+
+  test("performance test 3") {
+    assertEquals(
+      mainFunction.challengeFunction(
+        """ab               bz
+          |b
+          |ab                             bz""".stripMargin,
+        "baaabbzzzbbbaaabbzzzbbaaabbzzzbbaaabbzzzbbaaabbzzzbbaaabbzzzbb",
+      ),
+      200.0,
+    )
+  }
+
+  test("performance test 4") {
+    assertEquals(
+      mainFunction.challengeFunction(
         """abbbbbbbbbbbbbbbbbz
           |b
           |abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbz""".stripMargin,
         "baaabbzzzbbbaaabbzzzbbaaabbzzzbbaaabbzzzbbaaabbzzzbbaaabbzzzbb",
       ),
       200.0,
+    )
+  }
+
+  test("performance test 5") {
+    assertEquals(
+      mainFunction.challengeFunction(
+        """xaceccdadddcbbecaabbecdceaedbabcdbaededebdcbdadcddbbeeadcbdbabebcbedeedcbcdbaecybeecdddeaddbceadabebdaadcdabcacbacbabaaccccaebddbcdbbbdedcdcabbebddeaeebeceedadcebaacdcecadbadcdcdcebddcdbbcdeaedbcdcccaccdccdadecdeeddcceebaebdcaeadcbcecbbcaedcebddaaeccbadbdceaebdcdcbebccaacbccbbdaebbbadcebbcadbcacccdaeebadabeeadedcceecddbcacedeeeeedabaccbedccdabdaabdedbedecdabcacebccbabbdcbebbdeeacebadeeccdbcbabbdcaecdedbbaddcaacadcebcdebaecacabeaeeaacedadecbcddbabbbdcddeabaecabdceadcdadbecccaaaaaddcdbcabaedccbaaceebdbecbecbdeeebeaebbabecaccabaedbaedbdbddbaabcdeadeabcbdcbabccdeaccbacdbcdbbccbbadcbdcaebbcbdedbadcceddbaabacaadaeebddaacbaebbaeadcecedeadcdcdcbecdeecadadbbcbadecaeeedbdbbeaabedcdeceeaaebbdbadcccaeedccacddaababadabbdaadaadacbaebdeecbdaadcebebebeadcaaccedeecbbecdcbcdbdeebcaccdeeeaadacacbcccdccdecdcaaceabbcdeecacebbcbaebcbeaeeedccaeadbebaaadeadbbaeddaedbabbcbaddbcbbcedacacedbdabbeaeddbdaacdcddabaeccdcdbcbcdaddbecebceedddcdabcdcacadedceeacbaeeaceeaabbeeaddcbbdcbbeaabccbcecccaceebeedbdbaccaeebdecad
+          |eedaeaaceeaeeaddaddbddbcdbbbeadcedaaedbeaacadabecaadedcbeaaaccacdecabbacbececbcbebdccdeacbceaccdaacbdbaeabddeccdedcbddbeecaddadeecbebeddaceeeeabeeedeecbccdebdccbcaadaecedbadebedddcecceccececaeebeebeeadbcadddddccdbaccddceaeccadbcddeacededcebedbbdbbcceacaddeddcaacdebdcacedcedccbadbccddaebcecccdbeecbeaaaabacbbadcaceedecadbdedebdeeaeacedebbdcddeaccacdbcaddbcbebedabcacbdceccaaacbdbcccbccdedcddebcedebbaeebceaaebedaaddebaabcdbbbdedbeedbcadcdcdaeebdcebededbbdbacaacbadaadadcadaddddbaddecdccdbeeeedceccbdbddadbbcedebcedbbebadcaceeaccadededebcabddccadcbccbccadcedbbdaceedcedabbecdeaebaeaccbaccaebadeceadeaebcbcadabaacebcbdbdeeeeadeacedbebbbccadadaabccadccebdccebdddaadcacdeddcbcbeccbeebdaebaacccbeeebabbcdedadcbbcbcbebbdcbbeccdacecbdbdcbedebebdecbddbdbcaaacddcaddddebebdeacdccdcbccbdceeabebddeddeeceaaaaaaebdadcdadaaadbcabceccabdcedbdeaaecaecabaacdcccbeebdaeacbcdbdeacaaaebadeaaaeeebeaaaaccbdbaddaeacedbbaceebdbbbbcbeddcdcecdbddbdbbabdbebeccbbccebebecaeacadcdabddbeeeceeadceecddadbababeaadabcdbcacdeeddacba
+          |ccdbdceaeabaebacdcdacccebdcceabbcedceceebbabbbadeaabedceaacbcddaebaecadaaccddaeccceceaddaeceaaeacbbcebedecebaeadcccedaabdbcedacccdccaebcaeaadcabbbdbdaeebcaabdcbebeebedcdebaeabddbebabbaaaabcacaccdbecaaeabeeaaadbaecbaaadabbcccbcbcababecdeaeddeccabecdceeceaabecbbcbaababeabadaccaaeebddaebbbdeeedddedeeeebbaedceceaddbeaaabcbadbccaeeecceaddecddcabddabdadbcdcabacabcbccadeaddaacccdbaebccebbeaeddeceaaedeaeaacdaeaaddaacbacabccebcceeabdebddebedbeeabacbecaccbeeaadddbdebcceabcbadebaaeccebedbadcdcaabdcadabaaebbbaeecdcdecdacdeacbacaebeecedcbabeaeecccacdbdeebdbececabacdbaebcadeeaacbbbaeaeeecacedabdedeedccbceeddebdddccabaacacaeacdbdacdaebecbabaeeabceeabdcacbeccedaaacecceeeddeceabeedbbccdececabedecbcebeaabaabbdaabddcbccdeaddaabcecdceccbeaeebabaabceeedeaccdbddeddbababbdaabeabededadebadbcdaedbebdbbdedacebedecbacdbbeaaabaeebdebdadcaedeeccccbcdbadcdbceecdbadeddbdbaabeccedaeceeebeeccccededdcaeccaeaaccabbcadeddaaddaacdcacaecabebbebdebdbbdaccedcdbbcbedeaedbbeacaccdcaccbabddadcadcbaccdedcecaaeedacecddacecabecycc
+          |bbceaddddaeccebdecadbebdbcbdedcaaccdceecdcbabbaecdddccbdcabaedbbebbbddadcdbeebecdebbeacbaabdaacbdbdaecccdbaaddcecebaacabdddadcbbaeadbcacebcccaccdccdbeabdbdccaeabcbbceebbbdcaeedadedbddbaddbcbdedccdeadcaaeaecadbdccbbbdaeedbeceacddcaacaddbadeaaacaeadaedbacadeeabaaeeceadbbdabadeaeaccaaeaadddaebdecebabcdcadecceaebbadddcccceaabddebdeabbbcdceddaecadeebcbdadcdceaddbadcabcdcdeeceadaaeebdbcbdbaeeaaacebeebcbddaabadcdcebccedaceddedeebbcdeaaaebbeceeddaccedcbaebecaebacdadcaaeebcaecccebdeaaaeaaecaddadabcacabeddebaadbdeeabcccdadcadaebbeceaebbbdceeabedacededdaceedebccbbedeecdaaaaabeccbcdbbddbedaccdabcbeeecebeaabdadcdcbecdaadeeceaadacebdaededbbabaceedecddadacdecdcbabcdcdaecbdcecdcdedaaacbbedbaceceecabaabcbbcdacdbcbdbcdeabdbdaddceebbabadeaebeecacbcacddceedaacacaccbaeebdbbdbcbcbadaadaddeaadabaecdadceeacabdccebaacdaddbdcbaededcaeaaebccbaeabdaacceeebcbdebacaeccaeddaddadbecaccaebdbeecdacbacedddacdadeebaccbebcaeebceadbdbacbcdbddcedadebbbedaaccccabcabedbaeeddaebcdddcbadbdddeecbcdcbbaaacddbcddeddaedbeeceebcbabb
+          |eebceedeedcddadedeaadbebbadeeebabaecceccececaaccbbdbdacdeeabecddedcabdcecdaaaaeceaceedaceaaddeecaebebcdbeddbccadcdbececeaeeadcdbceedcdacaeeabdaacbddbaeddddcdcabebacecaabedabdacbbabaaacbbdacbecabaddccbcbbedaceeabddebdeeabcbadcceebcdddddbbddbcabaaeecaddccaadebebcacbeebcabcbaedbdacbaebedcededddeedbcecaaedbbecbddaedcebddbcdaeaeeadbbcaaeadbcaadedddcdcadeeacabdbedcdcddecbeaebdedabeaaecaaebabdedabcaeaaebaddecbcbdbbedbaaecdbbaabbbceabbabccceceecbaaadcbeeeaedcecdeaadccabaaccddedabdeaebadcbcbedabdcdbdadcecaedddecccbccecbcebcababbeaabaecdddacecdaeaabadbaccacbbcbdeddbabdbabaedbaeabcdecceaaedbddddaaeaebdcbceedbedcaebbdaadbacdacecaeeaaebbaebeaacabdebcedeaabdceebeaaeddecebcaaabcadbacebdbaabebdcaaaeebadeeabccecedcecddccaaddecbabadccabddcceadecaaedcddcbccedebccdebbeabaadbdaeaaddedeacccbadcaddcdbbbdeeabbaedcaebcdcaecadaedcdecabecdabedceedaecebaebeddbdaeaaaadbcaebdddabcaceaedabcdeceeabeeacdeedabeaaaaebaaaacaeebaadabcbbeecccedbeeaebebbdabbccddbcceccdaaaeeeabceddccbeadbcadaadeacecbbccbeccbbacbbcabbbcxbaaab""".stripMargin,
+        "xabdcdaebcacaadbadabcabbcbaccbabcbacbdbcbabyxydbbcbabbdbdcbabbdbcbabababcxbcbdbcbababcbbyccccbabdbcbab",
+      ),
+      109.9,
     )
   }
 }
