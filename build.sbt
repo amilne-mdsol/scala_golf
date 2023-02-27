@@ -1,3 +1,5 @@
+import pl.project13.scala.sbt.JmhPlugin
+
 lazy val root = Project("root", file("."))
   .settings(commonSettings)
   .settings(
@@ -7,6 +9,7 @@ lazy val root = Project("root", file("."))
       "org.scalameta" %% "munit" % "0.7.29" % Test,
     ),
   )
+  .enablePlugins(JmhPlugin)
 
 lazy val commonSettings = Seq(
   version := "0.1.0",
