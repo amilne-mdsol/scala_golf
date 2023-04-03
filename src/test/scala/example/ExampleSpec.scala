@@ -4,8 +4,7 @@ import munit.FunSuite
 
 class ExampleSpec extends FunSuite {
 
-  val mainFunction = new MainAlec()
-  //val mainFunction = new MainAlecSmall()
+  val mainFunction = new Main()
 
   test("challenge test easy 1") {
     assertEquals(mainFunction.challengeFunction("hannah"), Seq(("hannah", 0, 0)))
