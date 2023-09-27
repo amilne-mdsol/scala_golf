@@ -31,6 +31,40 @@ class ExampleSpec extends FunSuite {
       .head
   }
 
+  def calc(input: Seq[String]): Double = {
+
+    val temp = input
+      .foldLeft(Seq[Double]()) {
+        case (vals: Seq[Double], value: String) =>
+          value match {
+            case "+" => (vals(1) + vals.head) +: vals.drop(2)
+            case "-" => (vals(1) - vals.head) +: vals.drop(2)
+            case "*" => (vals(1) * vals.head) +: vals.drop(2)
+            case "/" => (vals(1) / vals.head) +: vals.drop(2)
+            case item => (item.toDouble +: vals)
+          }
+      }
+      .head
+
+    temp
+  }
+
+  def postToIn(input: Seq[String]): String = {
+    val temp = input
+      .foldLeft(Seq[String]()) {
+        case (vals: Seq[String], value: String) =>
+          value match {
+            case "+" => s"( ${vals(1)} + ${vals.head} )" +: vals.drop(2)
+            case "-" => s"( ${vals(1)} - ${vals.head} )" +: vals.drop(2)
+            case "*" => s"( ${vals(1)} * ${vals.head} )" +: vals.drop(2)
+            case "/" => s"( ${vals(1)} / ${vals.head} )" +: vals.drop(2)
+            case item => (item +: vals)
+          }
+      }
+      .head
+    temp
+  }
+
   private def checkNumberUsage(setup: Seq[Int], output: String): Boolean = {
     val parsedOutput = output.split(" ").toSeq.filterNot("()+-*/".contains(_)).map {
       _.toDouble.toInt
@@ -75,6 +109,9 @@ class ExampleSpec extends FunSuite {
     val input = Seq(3, 3, 9, 10, 50, 75)
     val ops = Seq("+", "+", "-", "*", "/")
     val target = 783
+
+    //val temp = calc(Seq("5","1","2","+","4","*","+","3","-"))
+    //val temp2 = postToIn(Seq("5","1","2","+","4","*","+","3","-"))
 
     testFunction(input, ops, target, true)
   }
@@ -131,6 +168,13 @@ class ExampleSpec extends FunSuite {
     val input = Seq(6, 7, 8, 8, 11, 13, 16, 17, 19, 27, 80)
 
     val ops = Seq("+", "+", "-", "/", "/", "*", "*", "*")
+    testFunction(input, ops, 1350, true)
+  }
+
+  test("challenge test Performance 2") {
+    val input = Seq(6, 7, 8, 8, 11, 13, 16, 17, 19, 27, 80)
+
+    val ops = Seq("+", "+", "-", "/", "/", "*", "*")
     testFunction(input, ops, 1350, true)
   }
 }
